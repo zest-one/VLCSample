@@ -29,7 +29,7 @@ struct VideoPlayer: View {
     @State private var subtitlesOption: SubtitlesOptions = .auto
     @State private var playbackOption: PlaybackOption = .oneX
     @State private var isShowingPopover = false
-    @State private var isShowingControls = true
+    @State private var isShowingControls = false
     @State private var showControlsTask: Task<Void, Never> = Task { }
     private let showingControlsDuration: UInt64 = 1000_000_000
     
@@ -44,31 +44,34 @@ struct VideoPlayer: View {
             VLCMediaPlayerView(playerWrapper: playerWrapper)
                 .overlay(alignment: .center) {
                     if playerWrapper.error {
-                        Text("Error...")
+                        Text("Errore di riproduzione")
                             .foregroundColor(.white)
-                            .font(.headline)
-                        .padding()
-                        .background { Color.white.opacity(0.1) }
-                        .cornerRadius(20)
-                    } else if !playerWrapper.isPlaying {
-                        Button {
-                            playerWrapper.play(enforceSubtitles: subtitlesOption.enforceSubtitles)
-                            isShowingControls.toggle()
-                        } label: {
-                            Image(systemName: "play.fill")
-                                .font(.largeTitle)
-                        }
-                        .padding()
+                            .font(.title2)
+                            .task {
+                                try? await Task.sleep(nanoseconds: 15_000_000)
+                                dismiss()
+                            }
                     } else if isShowingControls {
-                        Button {
-                            playerWrapper.pause()
-                            showControlsTask.cancel()
-                            isShowingControls = true
-                        } label: {
-                            Image(systemName: "pause.fill")
-                                .font(.largeTitle)
+                        if !playerWrapper.isPlaying && !playerWrapper.onPreRoll {
+                            Button {
+                                playerWrapper.play()
+                                isShowingControls.toggle()
+                            } label: {
+                                Image(systemName: "play.fill")
+                                    .font(.largeTitle)
+                            }
+                            .padding()
+                        } else {
+                            Button {
+                                playerWrapper.pause()
+                                showControlsTask.cancel()
+                                isShowingControls = true
+                            } label: {
+                                Image(systemName: "pause.fill")
+                                    .font(.largeTitle)
+                            }
+                            .padding()
                         }
-                        .padding()
                     }
                 }
             
@@ -160,12 +163,17 @@ struct VideoPlayer: View {
             .opacity(isShowingControls ? 1.0 : 0.0)
         }
         .tint(.white)
+        .task {
+            try? await Task.sleep(nanoseconds: 5_000_000)
+            playerWrapper.play()
+        }
         .onValueChange(of: subtitlesOption) { _, newValue in
             print("Change Subtitles Injection")
             playerWrapper.enableSubtitles(newValue.enforceSubtitles)
         }
         .onTapGesture {
             if isShowingControls { return }
+            if playerWrapper.onPreRoll { return }
             isShowingControls.toggle()
             showControlsTask.cancel()
             showControlsTask = Task {

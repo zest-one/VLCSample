@@ -18,3 +18,14 @@ extension View {
         }
     }
 }
+
+// MARK: UIKit Helper
+extension UIView {
+    func removePanGestureRecognizers() {
+        guard let gestureRecognizers else { return }
+        
+        gestureRecognizers
+            .compactMap { $0 as? UIPanGestureRecognizer }
+            .forEach { removeGestureRecognizer($0) }
+    }
+}

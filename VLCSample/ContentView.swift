@@ -7,16 +7,37 @@ struct ContentView: View {
         ZStack {
             Color.black.ignoresSafeArea()
             
-            Button {
+            VStack(spacing: 40) {
+                Button {
+                    showVideoPlayer.toggle()
+                } label: {
+                    VStack(spacing: 20) {
+                        Image(systemName: "play.fill")
+                            .font(.largeTitle)
+                        
+                        Text("VLC Player")
+                            .foregroundColor(.white)
+                            .font(.title2)
+                    }
+                    .padding(20)
+                    .background { Color.secondary }
+                    .cornerRadius(20)
+                }
                 
-            } label: {
-                VStack(spacing: 20) {
-                    Image(systemName: "play.fill")
-                        .font(.largeTitle)
-                    
-                    Text("Play Video")
-                        .foregroundColor(.white)
-                        .font(.headline)
+                Button {
+                    print("Open AVPlayerView")
+                } label: {
+                    VStack(spacing: 20) {
+                        Image(systemName: "play.fill")
+                            .font(.largeTitle)
+                        
+                        Text("AVPlayer   ")
+                            .foregroundColor(.white)
+                            .font(.title2)
+                    }
+                    .padding(20)
+                    .background { Color.secondary }
+                    .cornerRadius(20)
                 }
             }
         }
