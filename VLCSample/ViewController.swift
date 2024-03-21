@@ -5,14 +5,18 @@
 //  Created by George on 30.09.2020.
 //
 
-import UIKit
+/*import UIKit
 import MobileVLCKit
 
 class ViewController: UIViewController {
     
     @IBOutlet weak var vlcView: UIView!
+    
     let videoPlayer = VLCMediaPlayer()
-
+    let videoUrl = "https://acdn.ak-stream-videoplatform.sky.it/hls/2024/03/11/907941/master.m3u8"
+    let vttUrl = "https://videoplatform.sky.it/caption/2024/03/11/907941.vtt"
+    var enforceSubtitles = true
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         startStream()
@@ -20,17 +24,26 @@ class ViewController: UIViewController {
     }
 
     func startStream(){
-        guard let url = URL(string: "http://tagesschau-lh.akamaihd.net/i/tagesschau_1@119231/master.m3u8?dw=0") else {return}
+        guard let url = URL(string: videoUrl) else {
+            return
+        }
+        
         videoPlayer.drawable = vlcView
         videoPlayer.media = VLCMedia(url: url)
         
         videoPlayer.media.addOption( "-vv")
         videoPlayer.media.addOption( "--network-caching=10000")
-        
+        if let vtt = URL(string: vttUrl) {
+            videoPlayer
+                .addPlaybackSlave(
+                    vtt,
+                    type: .subtitle,
+                    enforce: enforceSubtitles
+                )
+        }
         videoPlayer.delegate = self
         
         videoPlayer.play()
-        
     }
     
     @IBAction func volumeControlAction(_ sender: UISlider) {
@@ -63,3 +76,4 @@ extension ViewController: VLCMediaPlayerDelegate{
         }
     }
 }
+*/
