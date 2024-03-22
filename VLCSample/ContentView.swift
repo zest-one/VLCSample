@@ -1,7 +1,9 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var showVideoPlayer = false
+    private let edge: CGFloat = 150
+    @State private var showVLCMediaPlayer = false
+    @State private var showAVPlayer = false
     
     var body: some View {
         ZStack {
@@ -9,7 +11,7 @@ struct ContentView: View {
             
             VStack(spacing: 40) {
                 Button {
-                    showVideoPlayer.toggle()
+                    showVLCMediaPlayer.toggle()
                 } label: {
                     VStack(spacing: 20) {
                         Image(systemName: "play.fill")
@@ -17,34 +19,39 @@ struct ContentView: View {
                         
                         Text("VLC Player")
                             .foregroundColor(.white)
-                            .font(.title2)
+                            .font(.title)
                     }
-                    .padding(20)
+                    .frame(width: edge, height: edge)
+                    .padding(edge / 10)
                     .background { Color.secondary }
-                    .cornerRadius(20)
+                    .cornerRadius(edge / 10)
+                }
+                .fullScreenCover(isPresented: $showVLCMediaPlayer) {
+                    VLCVideoPlayer(videoPayload: .mock)
                 }
                 
                 Button {
-                    print("Open AVPlayerView")
+                    showAVPlayer.toggle()
                 } label: {
                     VStack(spacing: 20) {
                         Image(systemName: "play.fill")
                             .font(.largeTitle)
                         
-                        Text("AVPlayer   ")
+                        Text("AVPlayer")
                             .foregroundColor(.white)
-                            .font(.title2)
+                            .font(.title)
                     }
-                    .padding(20)
+                    .frame(width: edge, height: edge)
+                    .padding(edge / 10)
                     .background { Color.secondary }
-                    .cornerRadius(20)
+                    .cornerRadius(edge / 10)
+                }
+                .fullScreenCover(isPresented: $showAVPlayer) {
+                    AVVideoPlayer(videoPayload: .mock)
                 }
             }
         }
         .tint(.white)
-        .fullScreenCover(isPresented: $showVideoPlayer) {
-            VideoPlayer(videoPayload: .mock)
-        }
     }
 }
 

@@ -5,7 +5,7 @@ import MobileVLCKit
 Closed captioning
 Closed captioning, or CC, is a feature that appears in some videos on YouTube. They describe what's happening in a video so users can understand the content. It can be helpful for users who have trouble hearing or who prefer to read the text instead of listening to it.*/
 
-struct VideoPlayer: View {
+struct VLCVideoPlayer: View {
     enum SubtitlesOptions: String, Equatable, CaseIterable {
         case cc = "CC"
         case off = "Off"
@@ -165,7 +165,7 @@ struct VideoPlayer: View {
         .tint(.white)
         .task {
             try? await Task.sleep(nanoseconds: 5_000_000)
-            playerWrapper.play()
+            playerWrapper.requestAds()
         }
         .onValueChange(of: subtitlesOption) { _, newValue in
             print("Change Subtitles Injection")
@@ -194,5 +194,5 @@ struct VideoPlayer: View {
 }
 
 #Preview {
-    VideoPlayer(videoPayload: .mock)
+    VLCVideoPlayer(videoPayload: .mock)
 }

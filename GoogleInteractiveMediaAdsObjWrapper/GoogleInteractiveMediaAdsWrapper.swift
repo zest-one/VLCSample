@@ -1,4 +1,5 @@
 import UIKit
+import AVFoundation
 @_implementationOnly import GoogleInteractiveMediaAds
 
 @objc
@@ -44,6 +45,7 @@ public class GoogleInteractiveMediaAdsWrapper: NSObject {
     
     class LoaderDelegate: NSObject, IMAAdsLoaderDelegate {
         let managerDelegate: AdsManager
+        var viewController: UIViewController?
         
         init(adsManagerDelegate: AdsManagerDelegate) {
             managerDelegate = .init(delegate: adsManagerDelegate)
@@ -54,7 +56,7 @@ public class GoogleInteractiveMediaAdsWrapper: NSObject {
             let adsManager = adsLoadedData.adsManager
             adsManager?.delegate = managerDelegate
             let adsRenderingSettings = IMAAdsRenderingSettings()
-            adsRenderingSettings.linkOpenerPresentingController = nil
+            adsRenderingSettings.linkOpenerPresentingController = viewController
             adsManager?.initialize(with: adsRenderingSettings)
             
             managerDelegate.adsManager = adsManager
@@ -84,15 +86,16 @@ public class GoogleInteractiveMediaAdsWrapper: NSObject {
     @objc
     public func requestAds(
         adTagUrl: String,
-        adContainer: UIView,
         viewController: UIViewController,
         player: Any?,
         userContext: Any? = nil
     ) {
+        loaderDelegate.viewController = viewController
+        
         let request = IMAAdsRequest(
             adTagUrl: adTagUrl,
             adDisplayContainer: IMAAdDisplayContainer(
-                adContainer: adContainer,
+                adContainer: viewController.view,
                 viewController: viewController,
                 companionSlots: nil
             ),
@@ -104,8 +107,36 @@ public class GoogleInteractiveMediaAdsWrapper: NSObject {
     }
     
     @objc
+    public func requestAVPlayerAds(
+        adTagUrl: String,
+        viewController: UIViewController,
+        player: AVPlayer,
+        userContext: Any? = nil
+    ) {
+        loaderDelegate.viewController = viewController
+        
+        let request = IMAAdsRequest(
+            adTagUrl: adTagUrl,
+            adDisplayContainer: IMAAdDisplayContainer(
+                adContainer: viewController.view,
+                viewController: viewController,
+                companionSlots: nil
+            ),
+            contentPlayhead: IMAAVPlayerContentPlayhead(avPlayer: player),
+            userContext: nil
+        )
+        
+        adsLoader.requestAds(with: request)
+    }
+    
+    @objc
     public func contentComplete() {
         adsLoader.contentComplete()
+    }
+    
+    @objc
+    public func resumeAd() {
+        loaderDelegate.managerDelegate.adsManager?.resume()
     }
 }
 

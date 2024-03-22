@@ -7,14 +7,14 @@ struct VLCMediaPlayerView: UIViewControllerRepresentable {
     
     func makeUIViewController(context: Context) -> UIViewController {
         let viewController = UIViewController()
+        viewController.view.subviews.forEach {
+            $0.removePanGestureRecognizers()
+        }
+        
         return viewController
     }
     
     func updateUIViewController(_ uiViewController: UIViewController, context: Context) {
-        uiViewController.view.subviews.forEach {
-            $0.removePanGestureRecognizers()
-        }
-        playerWrapper.player.drawable = uiViewController.view
-        playerWrapper.viewController = uiViewController
+        playerWrapper.viewControllerDidUpdate(uiViewController)
     }
 }

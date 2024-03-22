@@ -6,27 +6,11 @@ import GoogleInteractiveMediaAdsObjWrapper
 
 class VLCPlayerWrapper: NSObject, ObservableObject {
     
-    struct AdvertisingConfiguration {
-        let queryItems = [
-            "unviewed_position_start": "1",
-            "output": "vast",
-            "env": "vp",
-            "gdfp_req": "1",
-            "impl": "s",
-            "sz": "640x480",
-            "iu": "/316816995,22629227020/sky.it/test",
-            "description_url": "http://xfactor.sky.it/",
-            "correlator": String(describing: Date().timeIntervalSince1970)
-        ]
-        
-        let advUrl = "https://pubads.g.doubleclick.net/gampad/ads"
-    }
-    
     let player: VLCMediaPlayer
     let videoUrl: String
     let vttUrl: String
-    var viewController: UIViewController?
     
+    @Environment(\.dismiss) var dismiss
     @Published var isPlaying = false
     @Published var onPreRoll = false
     @Published var error = false
@@ -36,7 +20,8 @@ class VLCPlayerWrapper: NSObject, ObservableObject {
     @Published var vlcAudio: VLCAudio?
     @Published var isMuted: Bool
     private var videoSubTitlesIndex: Int32 = 0
-    private let advConfig = AdvertisingConfiguration()
+    private let advConfig = AdvertisingConfiguration.test
+    private var viewController: UIViewController?
     private lazy var googleInteractiveMediaAdsWrapper: GoogleInteractiveMediaAdsWrapper = {
         .init(adsManagerDelegate: self)
     }()
@@ -64,6 +49,34 @@ class VLCPlayerWrapper: NSObject, ObservableObject {
         progress = 0.0
         player.media = media
         addPlaybackSubtitles(true)
+        
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(didBecomeActive),
+            name: UIApplication.didBecomeActiveNotification,
+            object: nil
+        )
+        
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(didEnterBackground),
+            name: UIApplication.didEnterBackgroundNotification,
+            object: nil
+        )
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(
+            self,
+            name: UIApplication.didBecomeActiveNotification,
+            object: nil
+        )
+        
+        NotificationCenter.default.removeObserver(
+            self,
+            name: UIApplication.didEnterBackgroundNotification,
+            object: nil
+        )
     }
     
     ///Method to add subtitles from vtt URL
@@ -78,22 +91,13 @@ class VLCPlayerWrapper: NSObject, ObservableObject {
         }
     }
     
-    private func playMedia() {
+    ///Method to begin playing the specified URL
+    func play() {
         player.play()
         onPreRoll = false
         isPlaying = true
         
         // payload.map(Tracker.startVideoContent)
-    }
-    
-    ///Method to begin playing the specified URL
-    func play() {
-        if player.currentTime.isZero {
-            requestAds()
-            return
-        }
-        
-        playMedia()
     }
     
     ///Method to enable / disable the subtitles
@@ -119,7 +123,7 @@ class VLCPlayerWrapper: NSObject, ObservableObject {
             isPlaying = false
         }
         
-        // dismiss here?
+         dismiss()
     }
     
     func pause() {
@@ -150,26 +154,42 @@ class VLCPlayerWrapper: NSObject, ObservableObject {
         stop()
     }
     
-    private func requestAds() {
-        guard let viewController, var urlComponents = URLComponents(string: advConfig.advUrl) else {
-            player.play()
+    func viewControllerDidUpdate(_ controller: UIViewController) {
+        guard viewController == nil else {
             return
         }
         
-        urlComponents.queryItems = advConfig.queryItems.map { URLQueryItem(name: $0, value: $1) }
+        viewController = controller
+        player.drawable = controller.view
+    }
+    
+    func requestAds() {
+        guard let viewController else {
+            print("ViewController is nil")
+            return
+        }
         
-        guard let url = urlComponents.url else {
-            player.play()
+        guard let url = advConfig.url else {
+            play()
             return
         }
         
         onPreRoll.toggle()
         googleInteractiveMediaAdsWrapper.requestAds(
             adTagUrl: url.absoluteString,
-            adContainer: viewController.view,
             viewController: viewController,
             player: player
         )
+    }
+    
+    @objc
+    func didBecomeActive() {
+        googleInteractiveMediaAdsWrapper.resumeAd()
+    }
+    
+    @objc
+    func didEnterBackground() {
+        pause()
     }
 }
 
@@ -193,14 +213,14 @@ extension VLCPlayerWrapper: VLCMediaPlayerDelegate {
     }
     
     func mediaPlayerLoudnessChanged(_ aNotification: Notification) {
-        print("^ Volume: \(player.audio?.volume ?? 0)")
+        
     }
 }
 
 extension VLCPlayerWrapper: AdsManagerDelegate {
     
     func adsManagerDidReceiveError(_ message: String?) {
-        playMedia()
+        play()
     }
     
     func adsManagerDidRequestContentPause() {
@@ -208,7 +228,7 @@ extension VLCPlayerWrapper: AdsManagerDelegate {
     }
     
     func adsManagerDidRequestContentResume() {
-        playMedia()
+        play()
     }
 }
 
