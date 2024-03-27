@@ -20,7 +20,7 @@ class VLCPlayerWrapper: NSObject, ObservableObject {
     @Published var vlcAudio: VLCAudio?
     @Published var isMuted: Bool
     private var videoSubTitlesIndex: Int32 = 0
-    private let advConfig = AdvertisingConfiguration.test
+    private let advConfig = AdvertisingConfiguration.adsDisabled
     private var viewController: UIViewController?
     private lazy var googleInteractiveMediaAdsWrapper: GoogleInteractiveMediaAdsWrapper = {
         .init(adsManagerDelegate: self)

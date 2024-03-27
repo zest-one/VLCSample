@@ -1,6 +1,8 @@
 import SwiftUI
 import AVKit
 
+fileprivate let loremIpsum = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+
 struct AVVideoPlayer: View {
     private let vttInterval: CMTime = .init(
         seconds: 0.1,
@@ -8,7 +10,8 @@ struct AVVideoPlayer: View {
     )
     let videoPayload: VideoPayload
     let player: AVPlayer?
-    @State private var subtitle: String = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+    @State private var subtitle: String = ""
+    @State private var showSubtitles = true
     @State private var vtt: [ClosedRange<Double> : String] = [:]
     
     init(videoPayload: VideoPayload) {
@@ -30,7 +33,7 @@ struct AVVideoPlayer: View {
                 await setUpSubtitles()
             }
             .overlay {
-                if !subtitle.isEmpty {
+                if !subtitle.isEmpty && showSubtitles {
                     VStack {
                         Color.clear
                             .frame(height: 120)
@@ -44,6 +47,17 @@ struct AVVideoPlayer: View {
                             .frame(maxWidth: .infinity, alignment: .bottom)
                             .padding(.bottom, 16.0)
                     }
+                }
+            }
+            .overlay(alignment: .top) {
+                Button {
+                    showSubtitles.toggle()
+                } label: {
+                    Image(systemName: showSubtitles ? "captions.bubble" : "captions.bubble.fill")
+                        .resizable()
+                        .tint(.white)
+                        .frame(width: 24, height: 22)
+                        .padding(.top, 15)
                 }
             }
     }

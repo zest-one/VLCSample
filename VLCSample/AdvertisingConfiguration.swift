@@ -8,6 +8,7 @@ struct AdvertisingConfiguration {
     )
     
     static let test: AdvertisingConfiguration = .init(urlString: testUrl)
+    static let adsDisabled: AdvertisingConfiguration = .init()
     
     static let skyQueryItems =  [
         "unviewed_position_start": "1",
@@ -27,14 +28,18 @@ struct AdvertisingConfiguration {
     
     let url: URL?
     
-    init(queryItems: [String : String], baseUrl: String) {
+    private init(queryItems: [String : String], baseUrl: String) {
         var urlComponents = URLComponents(string: baseUrl)
         urlComponents?.queryItems = queryItems.map { URLQueryItem(name: $0, value: $1) }
         
         url = urlComponents?.url
     }
     
-    init(urlString: String) {
+    private init(urlString: String) {
         url = URL(string: urlString)
+    }
+    
+    private init() {
+        url = nil
     }
 }

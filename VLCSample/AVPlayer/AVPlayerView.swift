@@ -49,7 +49,7 @@ struct AVPlayerView: UIViewControllerRepresentable {
         var didRequestAds: Bool
         
         init(_ parent: AVPlayerView) {
-            advConfig = .test
+            advConfig = .adsDisabled
             self.parent = parent
             didRequestAds = false
             
