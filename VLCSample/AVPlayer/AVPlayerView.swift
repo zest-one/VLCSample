@@ -5,7 +5,6 @@ import GoogleInteractiveMediaAdsObjWrapper
 struct AVPlayerView: UIViewControllerRepresentable {
     @Environment(\.dismiss) var dismiss
     let player: AVPlayer?
-    let videoPayload: VideoPayload
     
     func play() {
         player?.play()
@@ -39,7 +38,7 @@ struct AVPlayerView: UIViewControllerRepresentable {
         dismiss()
     }
     
-    class Coordinator: NSObject {
+    class Coordinator: NSObject, AVPlayerViewControllerDelegate {
         
         private let advConfig: AdvertisingConfiguration
         private let parent: AVPlayerView
@@ -54,6 +53,20 @@ struct AVPlayerView: UIViewControllerRepresentable {
             didRequestAds = false
             
             super.init()
+        }
+        
+        func playerViewController(
+            _ playerViewController: AVPlayerViewController,
+            willBeginFullScreenPresentationWithAnimationCoordinator coordinator: any UIViewControllerTransitionCoordinator
+        ) {
+            print("willBeginFullScreenPresentation")
+        }
+        
+        func playerViewController(
+            _ playerViewController: AVPlayerViewController,
+            willEndFullScreenPresentationWithAnimationCoordinator coordinator: any UIViewControllerTransitionCoordinator
+        ) {
+            print("willEndFullScreenPresentation")
         }
         
         func getPlayer() -> AVPlayer? {

@@ -5,7 +5,11 @@ struct VLCSampleApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(
+                showVLCButton: true,
+                showAVPlayerButton: true,
+                edge: 150
+            )
         }
     }
 }

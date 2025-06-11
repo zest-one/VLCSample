@@ -10,6 +10,10 @@
 		0CEA3B4F4F37280CF9A63E2E /* libPods-VLCSample.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E7760E239CC2CEFC43E06DC7 /* libPods-VLCSample.a */; };
 		5EBA067A25247674000ED660 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5EBA067925247674000ED660 /* Assets.xcassets */; };
 		5EBA067D25247674000ED660 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5EBA067B25247674000ED660 /* LaunchScreen.storyboard */; };
+		C51F30332DEFFDF100D09B35 /* AVPlayerAssetGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51F30322DEFFDF100D09B35 /* AVPlayerAssetGenerator.swift */; };
+		C53271762DED968300877243 /* VideoDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53271752DED968300877243 /* VideoDetailView.swift */; };
+		C53D610A2DF9433C0001EA22 /* VLCPlayerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53D61092DF9433C0001EA22 /* VLCPlayerButton.swift */; };
+		C53D610C2DF943CA0001EA22 /* AVPlayerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53D610B2DF943CA0001EA22 /* AVPlayerButton.swift */; };
 		C56DC6022BAC9C5000590458 /* VLCMediaPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56DC6012BAC9C5000590458 /* VLCMediaPlayerView.swift */; };
 		C56DC6052BAD5DA700590458 /* AVPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56DC6042BAD5DA700590458 /* AVPlayerView.swift */; };
 		C56DC6072BAD5E3100590458 /* AdvertisingConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56DC6062BAD5E3100590458 /* AdvertisingConfiguration.swift */; };
@@ -47,6 +51,10 @@
 		5EBA067925247674000ED660 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5EBA067C25247674000ED660 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5EBA067E25247674000ED660 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C51F30322DEFFDF100D09B35 /* AVPlayerAssetGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVPlayerAssetGenerator.swift; sourceTree = "<group>"; };
+		C53271752DED968300877243 /* VideoDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoDetailView.swift; sourceTree = "<group>"; };
+		C53D61092DF9433C0001EA22 /* VLCPlayerButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VLCPlayerButton.swift; sourceTree = "<group>"; };
+		C53D610B2DF943CA0001EA22 /* AVPlayerButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVPlayerButton.swift; sourceTree = "<group>"; };
 		C56DC6012BAC9C5000590458 /* VLCMediaPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VLCMediaPlayerView.swift; sourceTree = "<group>"; };
 		C56DC6042BAD5DA700590458 /* AVPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVPlayerView.swift; sourceTree = "<group>"; };
 		C56DC6062BAD5E3100590458 /* AdvertisingConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvertisingConfiguration.swift; sourceTree = "<group>"; };
@@ -97,17 +105,16 @@
 		5EBA066F2524766B000ED660 /* VLCSample */ = {
 			isa = PBXGroup;
 			children = (
-				C5B093222BAB0183005FCFEF /* VLCSampleApp.swift */,
+				5EBA067B25247674000ED660 /* LaunchScreen.storyboard */,
+				5EBA067925247674000ED660 /* Assets.xcassets */,
+				5EBA067E25247674000ED660 /* Info.plist */,
+				C56DC6062BAD5E3100590458 /* AdvertisingConfiguration.swift */,
 				C5B093282BAB2F0C005FCFEF /* ContentView.swift */,
+				C5B0932C2BAC1906005FCFEF /* VideoPayload.swift */,
+				C5B0932A2BAC0977005FCFEF /* View+.swift */,
+				C5B093222BAB0183005FCFEF /* VLCSampleApp.swift */,
 				C56DC60A2BAD5FC400590458 /* AVPlayer */,
 				C56DC6032BAD5D8600590458 /* VLCMediaPlayer */,
-				C5B0932A2BAC0977005FCFEF /* View+.swift */,
-				C56DC60F2BAD9D0400590458 /* VTTParser.swift */,
-				C5B0932C2BAC1906005FCFEF /* VideoPayload.swift */,
-				C56DC6062BAD5E3100590458 /* AdvertisingConfiguration.swift */,
-				5EBA067925247674000ED660 /* Assets.xcassets */,
-				5EBA067B25247674000ED660 /* LaunchScreen.storyboard */,
-				5EBA067E25247674000ED660 /* Info.plist */,
 			);
 			path = VLCSample;
 			sourceTree = "<group>";
@@ -130,12 +137,22 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		C53D610D2DF94DEE0001EA22 /* Overlay (Old) */ = {
+			isa = PBXGroup;
+			children = (
+				C56DC60D2BAD7B0700590458 /* AVVideoPlayer.swift */,
+				C56DC60F2BAD9D0400590458 /* VTTParser.swift */,
+			);
+			path = "Overlay (Old)";
+			sourceTree = "<group>";
+		};
 		C56DC6032BAD5D8600590458 /* VLCMediaPlayer */ = {
 			isa = PBXGroup;
 			children = (
-				C5B093242BAB01D0005FCFEF /* VLCVideoPlayer.swift */,
-				C5B093262BAB04A6005FCFEF /* VLCPlayerWrapper.swift */,
 				C56DC6012BAC9C5000590458 /* VLCMediaPlayerView.swift */,
+				C53D61092DF9433C0001EA22 /* VLCPlayerButton.swift */,
+				C5B093262BAB04A6005FCFEF /* VLCPlayerWrapper.swift */,
+				C5B093242BAB01D0005FCFEF /* VLCVideoPlayer.swift */,
 			);
 			path = VLCMediaPlayer;
 			sourceTree = "<group>";
@@ -143,9 +160,12 @@
 		C56DC60A2BAD5FC400590458 /* AVPlayer */ = {
 			isa = PBXGroup;
 			children = (
-				C56DC60D2BAD7B0700590458 /* AVVideoPlayer.swift */,
+				C51F30322DEFFDF100D09B35 /* AVPlayerAssetGenerator.swift */,
+				C53D610B2DF943CA0001EA22 /* AVPlayerButton.swift */,
 				C56DC6042BAD5DA700590458 /* AVPlayerView.swift */,
+				C53271752DED968300877243 /* VideoDetailView.swift */,
 				C56DC60B2BAD751300590458 /* VideoViewController.swift */,
+				C53D610D2DF94DEE0001EA22 /* Overlay (Old) */,
 			);
 			path = AVPlayer;
 			sourceTree = "<group>";
@@ -181,7 +201,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 1200;
-				LastUpgradeCheck = 1520;
+				LastUpgradeCheck = 1640;
 				TargetAttributes = {
 					5EBA066C2524766B000ED660 = {
 						CreatedOnToolsVersion = 12.0.1;
@@ -250,9 +270,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-VLCSample/Pods-VLCSample-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-VLCSample/Pods-VLCSample-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -271,13 +295,17 @@
 				C5B0932D2BAC1906005FCFEF /* VideoPayload.swift in Sources */,
 				C5B093292BAB2F0C005FCFEF /* ContentView.swift in Sources */,
 				C56DC6022BAC9C5000590458 /* VLCMediaPlayerView.swift in Sources */,
+				C51F30332DEFFDF100D09B35 /* AVPlayerAssetGenerator.swift in Sources */,
 				C5B093252BAB01D0005FCFEF /* VLCVideoPlayer.swift in Sources */,
 				C56DC6052BAD5DA700590458 /* AVPlayerView.swift in Sources */,
 				C56DC6072BAD5E3100590458 /* AdvertisingConfiguration.swift in Sources */,
 				C5B093232BAB0183005FCFEF /* VLCSampleApp.swift in Sources */,
+				C53D610A2DF9433C0001EA22 /* VLCPlayerButton.swift in Sources */,
+				C53271762DED968300877243 /* VideoDetailView.swift in Sources */,
 				C5B0932B2BAC0977005FCFEF /* View+.swift in Sources */,
 				C56DC60C2BAD751300590458 /* VideoViewController.swift in Sources */,
 				C5B093272BAB04A6005FCFEF /* VLCPlayerWrapper.swift in Sources */,
+				C53D610C2DF943CA0001EA22 /* AVPlayerButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -299,6 +327,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -330,6 +359,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 64346Y5J98;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -361,6 +391,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -392,6 +423,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 64346Y5J98;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -421,7 +453,6 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 64346Y5J98;
 				ENABLE_BITCODE = NO;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				INFOPLIST_FILE = VLCSample/Info.plist;
@@ -446,7 +477,6 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 64346Y5J98;
 				ENABLE_BITCODE = NO;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				INFOPLIST_FILE = VLCSample/Info.plist;

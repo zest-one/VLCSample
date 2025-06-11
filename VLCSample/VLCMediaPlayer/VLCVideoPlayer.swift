@@ -194,5 +194,5 @@ struct VLCVideoPlayer: View {
 }
 
 #Preview {
-    VLCVideoPlayer(videoPayload: .mock)
+    VLCVideoPlayer(videoPayload: .sky)
 }

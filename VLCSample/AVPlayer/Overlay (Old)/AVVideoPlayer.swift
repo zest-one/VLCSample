@@ -27,7 +27,7 @@ struct AVVideoPlayer: View {
     }
     
     var body: some View {
-        AVPlayerView(player: player, videoPayload: videoPayload)
+        AVPlayerView(player: player)
             .ignoresSafeArea()
             .task {
                 await setUpSubtitles()
@@ -100,5 +100,5 @@ extension AVVideoPlayer {
 }
 
 #Preview {
-    AVVideoPlayer(videoPayload: .mock)
+    AVVideoPlayer(videoPayload: .sky)
 }

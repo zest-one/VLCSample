@@ -1,53 +1,28 @@
 import SwiftUI
+import AVFoundation
 
 struct ContentView: View {
-    private let edge: CGFloat = 150
-    @State private var showVLCMediaPlayer = false
-    @State private var showAVPlayer = false
+    let showVLCButton: Bool
+    let showAVPlayerButton: Bool
+    let edge: CGFloat
     
     var body: some View {
         ZStack {
             Color.black.ignoresSafeArea()
             
             VStack(spacing: 40) {
-                Button {
-                    showVLCMediaPlayer.toggle()
-                } label: {
-                    VStack(spacing: 20) {
-                        Image(systemName: "play.fill")
-                            .font(.largeTitle)
-                        
-                        Text("VLC Player")
-                            .foregroundColor(.white)
-                            .font(.title)
-                    }
-                    .frame(width: edge, height: edge)
-                    .padding(edge / 10)
-                    .background { Color.secondary }
-                    .cornerRadius(edge / 10)
-                }
-                .fullScreenCover(isPresented: $showVLCMediaPlayer) {
-                    VLCVideoPlayer(videoPayload: .mock)
+                if showVLCButton {
+                    VLCPlayerButton(
+                        edge: edge,
+                        videoPayload: .sky
+                    )
                 }
                 
-                Button {
-                    showAVPlayer.toggle()
-                } label: {
-                    VStack(spacing: 20) {
-                        Image(systemName: "play.fill")
-                            .font(.largeTitle)
-                        
-                        Text("AVPlayer")
-                            .foregroundColor(.white)
-                            .font(.title)
-                    }
-                    .frame(width: edge, height: edge)
-                    .padding(edge / 10)
-                    .background { Color.secondary }
-                    .cornerRadius(edge / 10)
-                }
-                .fullScreenCover(isPresented: $showAVPlayer) {
-                    AVVideoPlayer(videoPayload: .mock)
+                if showAVPlayerButton {
+                    AVPlayerButton(
+                        edge: edge,
+                        videoPayload: .sky
+                    )
                 }
             }
         }
@@ -56,5 +31,9 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView()
+    ContentView(
+        showVLCButton: false,
+        showAVPlayerButton: true,
+        edge: 150
+    )
 }
