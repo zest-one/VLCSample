@@ -7,12 +7,21 @@ struct PlayerAsset: Identifiable {
 }
 
 enum PlayerAssetError: Error {
-    case emptyTracks
+    case emptyTracks, fileDoesNotExist
 }
 
 actor AVPlayerAssetGenerator {
     
-    private func downloadVTT(from url: URL) async throws -> URL {
+    func getSampleVideoURLFromBundle(resource: String = "master", fileExtension: String = "m3u8") async throws -> URL {
+        guard let url = Bundle.main.url(forResource: resource, withExtension: fileExtension, subdirectory: nil) else {
+            print("Error: file does not exist")
+            throw PlayerAssetError.fileDoesNotExist
+        }
+        
+        return url
+    }
+    
+    private func downloadFile(from url: URL) async throws -> URL {
         let (tempLocalUrl, _) = try await URLSession.shared.download(from: url)
         
         let fileName = url.lastPathComponent
@@ -92,7 +101,7 @@ actor AVPlayerAssetGenerator {
             throw NSError(domain: "Cannot get URL from \(absoluteString)", code: 2, userInfo: nil)
         }
         
-        return try await downloadVTT(from: url)
+        return try await downloadFile(from: url)
     }
 
     func getAVPlayerAsset(

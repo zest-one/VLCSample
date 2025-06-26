@@ -3,6 +3,7 @@ import SwiftUI
 struct AVPlayerButton: View {
     var edge: CGFloat = 150
     var videoPayload: VideoPayload = .sky
+    var useSampleFile = false
     private let avPlayerAssetGenerator = AVPlayerAssetGenerator()
     @State private var playerAsset: PlayerAsset?
     @State private var videoData: VideoData?
@@ -10,7 +11,9 @@ struct AVPlayerButton: View {
     var body: some View {
         Button {
             Task {
-                if
+                if useSampleFile, let url = try? await avPlayerAssetGenerator.getSampleVideoURLFromBundle() {
+                    playerAsset = .init(playerItem: .init(url: url))
+                } else if
                     let videoUrl = URL(string: videoPayload.videoUrl)
                 {
                     do {

@@ -100,5 +100,5 @@ extension AVVideoPlayer {
 }
 
 #Preview {
-    AVVideoPlayer(videoPayload: .sky)
+    AVVideoPlayer(videoPayload: .mock1)
 }

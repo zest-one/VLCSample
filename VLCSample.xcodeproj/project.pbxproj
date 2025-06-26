@@ -28,6 +28,9 @@
 		C5B0932D2BAC1906005FCFEF /* VideoPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B0932C2BAC1906005FCFEF /* VideoPayload.swift */; };
 		C5B093502BAC4E69005FCFEF /* GoogleInteractiveMediaAdsObjWrapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5B0934F2BAC4E69005FCFEF /* GoogleInteractiveMediaAdsObjWrapper.framework */; };
 		C5B093512BAC4E69005FCFEF /* GoogleInteractiveMediaAdsObjWrapper.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C5B0934F2BAC4E69005FCFEF /* GoogleInteractiveMediaAdsObjWrapper.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C5BC4EF62E0D4BF6007B7B9C /* 907941.vtt in Resources */ = {isa = PBXBuildFile; fileRef = C5BC4EF32E0D4BF6007B7B9C /* 907941.vtt */; };
+		C5BC4EF72E0D4BF6007B7B9C /* master.m3u8 in Resources */ = {isa = PBXBuildFile; fileRef = C5BC4EF42E0D4BF6007B7B9C /* master.m3u8 */; };
+		C5BC4EF82E0D4BF6007B7B9C /* stream.m3u8 in Resources */ = {isa = PBXBuildFile; fileRef = C5BC4EEE2E0D4BF6007B7B9C /* stream.m3u8 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -68,6 +71,11 @@
 		C5B0932A2BAC0977005FCFEF /* View+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+.swift"; sourceTree = "<group>"; };
 		C5B0932C2BAC1906005FCFEF /* VideoPayload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPayload.swift; sourceTree = "<group>"; };
 		C5B0934F2BAC4E69005FCFEF /* GoogleInteractiveMediaAdsObjWrapper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GoogleInteractiveMediaAdsObjWrapper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C5BC4EEE2E0D4BF6007B7B9C /* stream.m3u8 */ = {isa = PBXFileReference; lastKnownFileType = text; path = stream.m3u8; sourceTree = "<group>"; };
+		C5BC4EEF2E0D4BF6007B7B9C /* video0.ts */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.typescript; path = video0.ts; sourceTree = "<group>"; };
+		C5BC4EF02E0D4BF6007B7B9C /* video1.ts */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.typescript; path = video1.ts; sourceTree = "<group>"; };
+		C5BC4EF32E0D4BF6007B7B9C /* 907941.vtt */ = {isa = PBXFileReference; lastKnownFileType = text; path = 907941.vtt; sourceTree = "<group>"; };
+		C5BC4EF42E0D4BF6007B7B9C /* master.m3u8 */ = {isa = PBXFileReference; lastKnownFileType = text; path = master.m3u8; sourceTree = "<group>"; };
 		E7760E239CC2CEFC43E06DC7 /* libPods-VLCSample.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-VLCSample.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -105,6 +113,7 @@
 		5EBA066F2524766B000ED660 /* VLCSample */ = {
 			isa = PBXGroup;
 			children = (
+				C5BC4EF52E0D4BF6007B7B9C /* HLS_POC */,
 				5EBA067B25247674000ED660 /* LaunchScreen.storyboard */,
 				5EBA067925247674000ED660 /* Assets.xcassets */,
 				5EBA067E25247674000ED660 /* Info.plist */,
@@ -170,6 +179,34 @@
 			path = AVPlayer;
 			sourceTree = "<group>";
 		};
+		C5BC4EF12E0D4BF6007B7B9C /* 240p */ = {
+			isa = PBXGroup;
+			children = (
+				C5BC4EEE2E0D4BF6007B7B9C /* stream.m3u8 */,
+				C5BC4EEF2E0D4BF6007B7B9C /* video0.ts */,
+				C5BC4EF02E0D4BF6007B7B9C /* video1.ts */,
+			);
+			path = 240p;
+			sourceTree = "<group>";
+		};
+		C5BC4EF22E0D4BF6007B7B9C /* master */ = {
+			isa = PBXGroup;
+			children = (
+				C5BC4EF12E0D4BF6007B7B9C /* 240p */,
+			);
+			path = master;
+			sourceTree = "<group>";
+		};
+		C5BC4EF52E0D4BF6007B7B9C /* HLS_POC */ = {
+			isa = PBXGroup;
+			children = (
+				C5BC4EF22E0D4BF6007B7B9C /* master */,
+				C5BC4EF32E0D4BF6007B7B9C /* 907941.vtt */,
+				C5BC4EF42E0D4BF6007B7B9C /* master.m3u8 */,
+			);
+			path = HLS_POC;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -232,6 +269,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C5BC4EF62E0D4BF6007B7B9C /* 907941.vtt in Resources */,
+				C5BC4EF72E0D4BF6007B7B9C /* master.m3u8 in Resources */,
+				C5BC4EF82E0D4BF6007B7B9C /* stream.m3u8 in Resources */,
 				5EBA067D25247674000ED660 /* LaunchScreen.storyboard in Resources */,
 				5EBA067A25247674000ED660 /* Assets.xcassets in Resources */,
 			);
