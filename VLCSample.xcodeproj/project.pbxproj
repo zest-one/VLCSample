@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 54;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -28,9 +28,6 @@
 		C5B0932D2BAC1906005FCFEF /* VideoPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B0932C2BAC1906005FCFEF /* VideoPayload.swift */; };
 		C5B093502BAC4E69005FCFEF /* GoogleInteractiveMediaAdsObjWrapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5B0934F2BAC4E69005FCFEF /* GoogleInteractiveMediaAdsObjWrapper.framework */; };
 		C5B093512BAC4E69005FCFEF /* GoogleInteractiveMediaAdsObjWrapper.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C5B0934F2BAC4E69005FCFEF /* GoogleInteractiveMediaAdsObjWrapper.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		C5BC4EF62E0D4BF6007B7B9C /* 907941.vtt in Resources */ = {isa = PBXBuildFile; fileRef = C5BC4EF32E0D4BF6007B7B9C /* 907941.vtt */; };
-		C5BC4EF72E0D4BF6007B7B9C /* master.m3u8 in Resources */ = {isa = PBXBuildFile; fileRef = C5BC4EF42E0D4BF6007B7B9C /* master.m3u8 */; };
-		C5BC4EF82E0D4BF6007B7B9C /* stream.m3u8 in Resources */ = {isa = PBXBuildFile; fileRef = C5BC4EEE2E0D4BF6007B7B9C /* stream.m3u8 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -71,13 +68,12 @@
 		C5B0932A2BAC0977005FCFEF /* View+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+.swift"; sourceTree = "<group>"; };
 		C5B0932C2BAC1906005FCFEF /* VideoPayload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPayload.swift; sourceTree = "<group>"; };
 		C5B0934F2BAC4E69005FCFEF /* GoogleInteractiveMediaAdsObjWrapper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GoogleInteractiveMediaAdsObjWrapper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C5BC4EEE2E0D4BF6007B7B9C /* stream.m3u8 */ = {isa = PBXFileReference; lastKnownFileType = text; path = stream.m3u8; sourceTree = "<group>"; };
-		C5BC4EEF2E0D4BF6007B7B9C /* video0.ts */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.typescript; path = video0.ts; sourceTree = "<group>"; };
-		C5BC4EF02E0D4BF6007B7B9C /* video1.ts */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.typescript; path = video1.ts; sourceTree = "<group>"; };
-		C5BC4EF32E0D4BF6007B7B9C /* 907941.vtt */ = {isa = PBXFileReference; lastKnownFileType = text; path = 907941.vtt; sourceTree = "<group>"; };
-		C5BC4EF42E0D4BF6007B7B9C /* master.m3u8 */ = {isa = PBXFileReference; lastKnownFileType = text; path = master.m3u8; sourceTree = "<group>"; };
 		E7760E239CC2CEFC43E06DC7 /* libPods-VLCSample.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-VLCSample.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		C59B4D042E0D5480007285D7 /* Resources */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Resources; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		5EBA066A2524766B000ED660 /* Frameworks */ = {
@@ -95,6 +91,7 @@
 		5EBA06642524766B000ED660 = {
 			isa = PBXGroup;
 			children = (
+				C59B4D042E0D5480007285D7 /* Resources */,
 				5EBA066F2524766B000ED660 /* VLCSample */,
 				5EBA066E2524766B000ED660 /* Products */,
 				733130FBA0EEECF7CB69BE83 /* Pods */,
@@ -113,7 +110,6 @@
 		5EBA066F2524766B000ED660 /* VLCSample */ = {
 			isa = PBXGroup;
 			children = (
-				C5BC4EF52E0D4BF6007B7B9C /* HLS_POC */,
 				5EBA067B25247674000ED660 /* LaunchScreen.storyboard */,
 				5EBA067925247674000ED660 /* Assets.xcassets */,
 				5EBA067E25247674000ED660 /* Info.plist */,
@@ -179,34 +175,6 @@
 			path = AVPlayer;
 			sourceTree = "<group>";
 		};
-		C5BC4EF12E0D4BF6007B7B9C /* 240p */ = {
-			isa = PBXGroup;
-			children = (
-				C5BC4EEE2E0D4BF6007B7B9C /* stream.m3u8 */,
-				C5BC4EEF2E0D4BF6007B7B9C /* video0.ts */,
-				C5BC4EF02E0D4BF6007B7B9C /* video1.ts */,
-			);
-			path = 240p;
-			sourceTree = "<group>";
-		};
-		C5BC4EF22E0D4BF6007B7B9C /* master */ = {
-			isa = PBXGroup;
-			children = (
-				C5BC4EF12E0D4BF6007B7B9C /* 240p */,
-			);
-			path = master;
-			sourceTree = "<group>";
-		};
-		C5BC4EF52E0D4BF6007B7B9C /* HLS_POC */ = {
-			isa = PBXGroup;
-			children = (
-				C5BC4EF22E0D4BF6007B7B9C /* master */,
-				C5BC4EF32E0D4BF6007B7B9C /* 907941.vtt */,
-				C5BC4EF42E0D4BF6007B7B9C /* master.m3u8 */,
-			);
-			path = HLS_POC;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -217,6 +185,7 @@
 				76881545B3C825E1AE6AEE93 /* [CP] Check Pods Manifest.lock */,
 				5EBA06692524766B000ED660 /* Sources */,
 				5EBA066A2524766B000ED660 /* Frameworks */,
+				C59B4CD72E0D51F2007285D7 /* Run Script HLS_POC */,
 				5EBA066B2524766B000ED660 /* Resources */,
 				8130B458926D852DB3355E43 /* [CP] Embed Pods Frameworks */,
 				C5B0934E2BAC4E60005FCFEF /* Embed Frameworks */,
@@ -224,6 +193,9 @@
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				C59B4D042E0D5480007285D7 /* Resources */,
 			);
 			name = VLCSample;
 			productName = VLCSample;
@@ -269,9 +241,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C5BC4EF62E0D4BF6007B7B9C /* 907941.vtt in Resources */,
-				C5BC4EF72E0D4BF6007B7B9C /* master.m3u8 in Resources */,
-				C5BC4EF82E0D4BF6007B7B9C /* stream.m3u8 in Resources */,
 				5EBA067D25247674000ED660 /* LaunchScreen.storyboard in Resources */,
 				5EBA067A25247674000ED660 /* Assets.xcassets in Resources */,
 			);
@@ -322,6 +291,25 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-VLCSample/Pods-VLCSample-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		C59B4CD72E0D51F2007285D7 /* Run Script HLS_POC */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 8;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run Script HLS_POC";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+			shellPath = /bin/sh;
+			shellScript = "#!/bin/bash\n\n# Define output path inside your bundle's resources\nTARGET_DIR=\"${PROJECT_DIR}/Resources/HLS\"\n\n# Remote sources\nBASE_URL=\"https://acdn.ak-stream-videoplatform.sky.it/hls/2024/03/11/907941\"\nSUBTITLE_URL=\"https://videoplatform.sky.it/caption/2024/03/11/907941.vtt\"\n\n# Clean existing folder\nrm -rf \"$TARGET_DIR\"\nmkdir -p \"$TARGET_DIR/master/240p\"\n\n# Download master playlist\ncurl -s \"${BASE_URL}/master.m3u8\" -o \"$TARGET_DIR/master.m3u8\"\n\n# Download 240p stream playlist\ncurl -s \"${BASE_URL}/master/240p/stream.m3u8\" -o \"$TARGET_DIR/master/240p/stream.m3u8\"\n\n# Download all .ts segment files referenced in stream.m3u8\ncd \"$TARGET_DIR/master/240p\"\ngrep -E '^[^#]' stream.m3u8 | while read -r line; do\n    curl -s \"${BASE_URL}/master/240p/${line}\" -o \"$line\"\ndone\n\n# Download subtitles and convert to .vtt\ncurl -s \"$SUBTITLE_URL\" -o \"$TARGET_DIR/907941.vtt\"\n\n# Inject subtitle info into master.m3u8 (overwrite file)\ncat > \"$TARGET_DIR/master.m3u8\" <<EOF\n#EXTM3U\n#EXT-X-VERSION:3\n#EXT-X-INDEPENDENT-SEGMENTS\n#EXT-X-MEDIA:TYPE=SUBTITLES,GROUP-ID=\"subs\",LANGUAGE=\"it\",NAME=\"Italiano\",DEFAULT=YES,AUTOSELECT=YES,URI=\"907941.vtt\"\n#EXT-X-STREAM-INF:BANDWIDTH=679958,AVERAGE-BANDWIDTH=633795,CODECS=\"avc1.42c015,mp4a.40.2\",RESOLUTION=428x240,FRAME-RATE=25.000,SUBTITLES=\"subs\"\nmaster/240p/stream.m3u8\nEOF\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

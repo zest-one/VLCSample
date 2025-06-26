@@ -66,6 +66,6 @@ struct AVPlayerButton: View {
 }
 
 #Preview {
-    AVPlayerButton()
+    AVPlayerButton(useSampleFile: true)
         .tint(.white)
 }

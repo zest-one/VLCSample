@@ -12,7 +12,7 @@ enum PlayerAssetError: Error {
 
 actor AVPlayerAssetGenerator {
     
-    func getSampleVideoURLFromBundle(resource: String = "master", fileExtension: String = "m3u8") async throws -> URL {
+    func getSampleVideoURLFromBundle(resource: String = "HLS/master", fileExtension: String = "m3u8") async throws -> URL {
         guard let url = Bundle.main.url(forResource: resource, withExtension: fileExtension, subdirectory: nil) else {
             print("Error: file does not exist")
             throw PlayerAssetError.fileDoesNotExist
