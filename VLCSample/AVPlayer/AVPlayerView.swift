@@ -69,6 +69,10 @@ struct AVPlayerView: UIViewControllerRepresentable {
             print("willEndFullScreenPresentation")
         }
         
+        func playerViewController( _ playerViewController: AVPlayerViewController, restoreUserInterfaceForFullScreenExitWithCompletionHandler: (Bool) -> Void) {
+            restoreUserInterfaceForFullScreenExitWithCompletionHandler(true)
+        }
+        
         func getPlayer() -> AVPlayer? {
             return parent.player
         }
