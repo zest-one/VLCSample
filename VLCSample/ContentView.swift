@@ -21,7 +21,7 @@ struct ContentView: View {
                 if showAVPlayerButton {
                     AVPlayerButton(
                         edge: edge,
-                        useSampleFile: true
+                        useSampleFile: false
                     )
                 }
             }
